@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import Inputfield from './Inputfield';
+import FormHeader from './FormHeader';
+import FormFooter from './FormFooter';
 
 const FormComponent = () => {
   const [formData, setFormData] = useState({
@@ -13,33 +16,51 @@ const FormComponent = () => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
-  const saveItem = event => {
+  const handleSubmit = event => {
     event.preventDefault();
     console.log(formData);
   };
 
   return (
-    <div>
-      <form className='form-control' onSubmit={saveItem}>
-        <label>Name</label>
-        <input type='text' name='name' onChange={handleChange} />
-        <br />
-        <label>Username</label>
-        <input type='text' name='username' onChange={handleChange} />
-        <br />
-        <label>Email</label>
-        <input type='email' name='email' onChange={handleChange} />
-        <br />
-        <label>Password</label>
-        <input type='text' name='password' onChange={handleChange} />
-        <br />
-        <label>Confirm Password</label>
-        <input type='text' name='confirmedPassword' onChange={handleChange} />
-        <div>
-          <button>Submit</button>
-        </div>
-      </form>
-    </div>
+    <form className='form-control' onSubmit={handleSubmit}>
+      <FormHeader />
+      <Inputfield
+        label='Name'
+        name='name'
+        type='text'
+        value={formData.name}
+        onChange={handleChange}
+      />
+      <Inputfield
+        label='Username'
+        name='username'
+        type='text'
+        value={formData.username}
+        onChange={handleChange}
+      />
+      <Inputfield
+        label='Email'
+        name='email'
+        type='email'
+        value={formData.email}
+        onChange={handleChange}
+      />
+      <Inputfield
+        label='Password'
+        name='password'
+        type='password'
+        value={formData.password}
+        onChange={handleChange}
+      />
+      <Inputfield
+        label='Confirm Password'
+        name='confirmedPassword'
+        type='password'
+        value={formData.confirmedPassword}
+        onChange={handleChange}
+      />
+      <FormFooter />
+    </form>
   );
 };
 
