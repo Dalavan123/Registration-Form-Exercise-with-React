@@ -1,62 +1,40 @@
 import { useState } from 'react';
 
 const FormComponent = () => {
-  const [name, setName] = useState('');
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmedPassword, setConfirmedPassword] = useState('');
+  const [formData, setFormData] = useState({
+    name: '',
+    username: '',
+    email: '',
+    password: '',
+    confirmedPassword: '',
+  });
 
-  const inputName = event => {
-    setName(event.target.value);
-  };
-
-  const inputUsername = event => {
-    setUsername(event.target.value);
-  };
-
-  const inputEmail = event => {
-    setEmail(event.target.value);
-  };
-
-  const inputPassword = event => {
-    setPassword(event.target.value);
-  };
-
-  const inputConfirmedpassword = event => {
-    setConfirmedPassword(event.target.value);
+  const handleChange = event => {
+    setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
   const saveItem = event => {
     event.preventDefault();
-    const inputData = {
-      name: name,
-      username: username,
-      email: email,
-      password: password,
-      confirmedpassword: confirmedPassword,
-    };
-
-    console.log(inputData);
+    console.log(formData);
   };
 
   return (
     <div>
       <form className='form-control' onSubmit={saveItem}>
         <label>Name</label>
-        <input type='text' onChange={inputName} />
+        <input type='text' name='name' onChange={handleChange} />
         <br />
         <label>Username</label>
-        <input type='text' onChange={inputUsername} />
+        <input type='text' name='username' onChange={handleChange} />
         <br />
         <label>Email</label>
-        <input type='email' onChange={inputEmail} />
+        <input type='email' name='email' onChange={handleChange} />
         <br />
         <label>Password</label>
-        <input type='text' onChange={inputPassword} />
+        <input type='text' name='password' onChange={handleChange} />
         <br />
         <label>Confirm Password</label>
-        <input type='text' onChange={inputConfirmedpassword} />
+        <input type='text' name='confirmedPassword' onChange={handleChange} />
         <div>
           <button>Submit</button>
         </div>
